@@ -9,13 +9,13 @@ import {
 } from './postprocess';
 import class_names from './coco_classes';
 
-const INPUT_DIM = 416;
+const INPUT_DIM = 224;
 
 const DEFAULT_FILTER_BOXES_THRESHOLD = 0.01;
-const DEFAULT_IOU_THRESHOLD = 0.4;
+const DEFAULT_IOU_THRESHOLD = 0.25;
 const DEFAULT_CLASS_PROB_THRESHOLD = 0.4
 const DEFAULT_MODEL_LOCATION =
-  'https://raw.githubusercontent.com/MikeShi42/yolo-tiny-tfjs/master/model2.json';
+  'https://raw.githubusercontent.com/rachuang22/coco_yolo_js/master/model.json';
 
 export async function downloadModel(url = DEFAULT_MODEL_LOCATION) {
   return await tf.loadModel(url);
@@ -79,8 +79,8 @@ export default async function yolo(
 
     top = Math.max(0, top);
     left = Math.max(0, left);
-    bottom = Math.min(416, bottom);
-    right = Math.min(416, right);
+    bottom = Math.min(224, bottom);
+    right = Math.min(224, right);
 
     const resultObj = {
       className,
