@@ -8,6 +8,10 @@ export const YOLO_ANCHORS = tf.tensor2d([
   [7.88282, 3.52778], [9.77052, 9.16828],
 ]);
 
+// export const YOLO_ANCHORS = tf.tensor2d([
+//   [1.08,1.19], [3.42,4.41], [6.63,11.38],
+//   [9.42,5.11], [16.62,10.52],
+// ]);
 export async function yolo_filter_boxes(
   boxes,
   box_confidence,
@@ -42,7 +46,7 @@ export async function yolo_filter_boxes(
  * @returns {tf.Tensor} Bounding box corner Tensor
  */
 export function yolo_boxes_to_corners(box_xy, box_wh) {
-  const two = tf.tensor1d([2.0]);
+  const two = tf.tensor1d([1.0]);
   const box_mins = tf.sub(box_xy, tf.div(box_wh, two));
   const box_maxes = tf.add(box_xy, tf.div(box_wh, two));
 
